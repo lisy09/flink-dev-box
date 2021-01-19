@@ -1,0 +1,28 @@
+{
+    "name": "${localWorkspaceFolder}",
+    "image": "lisy09/flink-dev-base:1.0-flink_1.12-scala_2.12.12-java11",
+    "shutdownAction": "stopContainer",
+
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "metals.sbtScript": "/usr/local/sdkman/candidates/sbt/current/bin/sbt"
+    },
+
+    "extensions": [
+        "editorconfig.editorconfig",
+        "sonarsource.sonarlint-vscode",
+        "visualstudioexptteam.vscodeintellicode",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-java-dependency",
+        "scala-lang.scala",
+        "scalameta.metals"
+    ],
+    "workspaceMount": "",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ],
+    "workspaceFolder": "/workspace",
+
+    // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
+}
