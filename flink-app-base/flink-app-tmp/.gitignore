@@ -6,3 +6,5 @@
 !/project/plugins.sbt
 !/project/build.properties
 /build_results/
+.classpath
+.factorypath

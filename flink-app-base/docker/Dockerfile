@@ -17,6 +17,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     curl \
     make \
     gnupg \
+    xmlstarlet \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /workspace
 

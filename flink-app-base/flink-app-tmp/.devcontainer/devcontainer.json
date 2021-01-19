@@ -1,11 +1,13 @@
 {
     "name": "${localWorkspaceFolder}",
-    "image": "lisy09/flink-dev-base:1.0-flink_1.12-scala_2.12.12-java11",
+    "image": "#BASE_IMAGE_FULL",
     "shutdownAction": "stopContainer",
 
     "settings": {
         "terminal.integrated.shell.linux": "/bin/bash",
-        "metals.sbtScript": "/usr/local/sdkman/candidates/sbt/current/bin/sbt"
+        "metals.sbtScript": "/usr/local/sdkman/candidates/sbt/current/bin/sbt",
+        "java.home": "/docker-java-home",
+        "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn",
     },
 
     "extensions": [
@@ -14,6 +16,7 @@
         "visualstudioexptteam.vscodeintellicode",
         "vscjava.vscode-java-pack",
         "vscjava.vscode-java-dependency",
+        "shengchen.vscode-checkstyle",
         "scala-lang.scala",
         "scalameta.metals"
     ],

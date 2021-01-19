@@ -13,3 +13,10 @@ new: new-scala
 .PHONY: new-scala
 new-scala:
 	bash ${SCRIPT_DIR}/new_flink_scala_project.sh
+
+.PHONY: new-java
+new-java: new-java-maven
+
+.PHONY: new-java-maven
+new-java-maven:
+	bash ${SCRIPT_DIR}/new_flink_java_maven_project.sh
