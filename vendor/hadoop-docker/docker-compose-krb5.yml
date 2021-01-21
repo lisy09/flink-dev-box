@@ -1,0 +1,113 @@
+version: "3"
+networks:
+  default:
+    external:
+      name: app
+services:
+  namenode:
+    image: ${DOCKER_REPO}hadoop-namenode:${DOCKER_TAG}
+    container_name: namenode
+    hostname: namenode.app
+    restart: always
+    ports:
+      - ${NAMENODE_PORT_INTERNAL}:${NAMENODE_PORT_INTERNAL}
+    volumes:
+      - ${PWD}/../../kerberos-cluster/keytabs/hadoop.keytab:/var/secret/keytabs/hadoop.keytab
+      - ${PWD}/../../kerberos-cluster/conf/krb5.conf:/etc/krb5.conf
+      - hadoop_namenode:/hadoop/dfs/name
+      - ${PWD}/conf-krb5/core-site.xml:/etc/hadoop/core-site.xml
+      - ${PWD}/conf-krb5/hdfs-site.xml:/etc/hadoop/hdfs-site.xml
+      - ${PWD}/conf-krb5/yarn-site.xml:/etc/hadoop/yarn-site.xml
+      - ${PWD}/conf-krb5/mapred-site.xml:/etc/hadoop/mapred-site.xml
+      - ${PWD}/conf-krb5/ssl-server.xml:/etc/hadoop/ssl-server.xml
+      - ${PWD}/conf-krb5/ssl-client.xml:/etc/hadoop/ssl-client.xml
+      - ${PWD}/conf-krb5/keystore.jks:/etc/hadoop/keystore.jks
+    environment:
+      - CLUSTER_NAME=test
+
+  datanode:
+    image: ${DOCKER_REPO}hadoop-datanode:${DOCKER_TAG}
+    container_name: datanode
+    hostname: datanode.app
+    restart: always
+    environment: 
+      - HADOOP_ROOT_LOGGER=DEBUG,console
+    ports:
+      - ${DATANODE_PORT_INTERNAL}:${DATANODE_PORT_INTERNAL}
+    volumes:
+      - ${PWD}/../../kerberos-cluster/keytabs/hadoop.keytab:/var/secret/keytabs/hadoop.keytab
+      - ${PWD}/../../kerberos-cluster/conf/krb5.conf:/etc/krb5.conf
+      - hadoop_datanode:/hadoop/dfs/data
+      - ${PWD}/conf-krb5/core-site.xml:/etc/hadoop/core-site.xml
+      - ${PWD}/conf-krb5/hdfs-site.xml:/etc/hadoop/hdfs-site.xml
+      - ${PWD}/conf-krb5/yarn-site.xml:/etc/hadoop/yarn-site.xml
+      - ${PWD}/conf-krb5/mapred-site.xml:/etc/hadoop/mapred-site.xml
+      - ${PWD}/conf-krb5/ssl-server.xml:/etc/hadoop/ssl-server.xml
+      - ${PWD}/conf-krb5/ssl-client.xml:/etc/hadoop/ssl-client.xml
+      - ${PWD}/conf-krb5/keystore.jks:/etc/hadoop/keystore.jks
+    depends_on: 
+      - namenode
+  
+  resourcemanager:
+    image: ${DOCKER_REPO}hadoop-resourcemanager:${DOCKER_TAG}
+    container_name: resourcemanager
+    hostname: resourcemanager.app
+    restart: always
+    volumes:
+      - ${PWD}/../../kerberos-cluster/keytabs/hadoop.keytab:/var/secret/keytabs/hadoop.keytab
+      - ${PWD}/../../kerberos-cluster/conf/krb5.conf:/etc/krb5.conf
+    ports:
+      - ${RESOURCEMANAGER_PORT_INTERNAL}:${RESOURCEMANAGER_PORT_INTERNAL}
+    depends_on: 
+      - namenode
+      - datanode
+
+  nodemanager1:
+    image: ${DOCKER_REPO}hadoop-nodemanager:${DOCKER_TAG}
+    container_name: nodemanager
+    hostname: nodemanager.app
+    restart: always
+    ports:
+      - ${NODEMANAGER_PORT_INTERNAL}:${NODEMANAGER_PORT_INTERNAL}
+    volumes: 
+      - ${PWD}/../../kerberos-cluster/keytabs/hadoop.keytab:/var/secret/keytabs/hadoop.keytab
+      - ${PWD}/../../kerberos-cluster/conf/krb5.conf:/etc/krb5.conf
+      - ${PWD}/conf-krb5/core-site.xml:/etc/hadoop/core-site.xml
+      - ${PWD}/conf-krb5/hdfs-site.xml:/etc/hadoop/hdfs-site.xml
+      - ${PWD}/conf-krb5/yarn-site.xml:/etc/hadoop/yarn-site.xml
+      - ${PWD}/conf-krb5/mapred-site.xml:/etc/hadoop/mapred-site.xml
+      - ${PWD}/conf-krb5/ssl-server.xml:/etc/hadoop/ssl-server.xml
+      - ${PWD}/conf-krb5/ssl-client.xml:/etc/hadoop/ssl-client.xml
+      - ${PWD}/conf-krb5/keystore.jks:/etc/hadoop/keystore.jks
+    depends_on: 
+      - namenode
+      - datanode
+      - resourcemanager
+  
+  historyserver:
+    image: ${DOCKER_REPO}hadoop-historyserver:${DOCKER_TAG}
+    container_name: historyserver
+    hostname: historyserver.app
+    restart: always
+    depends_on: 
+      - namenode
+      - datanode
+      - resourcemanager
+    ports:
+      - ${HISTORYSERVER_PORT_INTERNAL}:${HISTORYSERVER_PORT_INTERNAL}
+    volumes:
+      - ${PWD}/../../kerberos-cluster/keytabs/hadoop.keytab:/var/secret/keytabs/hadoop.keytab
+      - ${PWD}/../../kerberos-cluster/conf/krb5.conf:/etc/krb5.conf
+      - hadoop_historyserver:/hadoop/yarn/timeline
+      - ${PWD}/conf-krb5/core-site.xml:/etc/hadoop/core-site.xml
+      - ${PWD}/conf-krb5/hdfs-site.xml:/etc/hadoop/hdfs-site.xml
+      - ${PWD}/conf-krb5/yarn-site.xml:/etc/hadoop/yarn-site.xml
+      - ${PWD}/conf-krb5/mapred-site.xml:/etc/hadoop/mapred-site.xml
+      - ${PWD}/conf-krb5/ssl-server.xml:/etc/hadoop/ssl-server.xml
+      - ${PWD}/conf-krb5/ssl-client.xml:/etc/hadoop/ssl-client.xml
+      - ${PWD}/conf-krb5/keystore.jks:/etc/hadoop/keystore.jks
+
+volumes:
+  hadoop_namenode:
+  hadoop_datanode:
+  hadoop_historyserver:

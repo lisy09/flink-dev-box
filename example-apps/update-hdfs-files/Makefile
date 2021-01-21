@@ -28,3 +28,13 @@ jar-local:
 .PHONY: jar
 jar:
 	bash ${SCRIPT_DIR}/build_jar.sh
+
+.PHONY: deploy
+deploy:
+	bash ${SCRIPT_DIR}/deploy.sh
+.PHONY: undeploy
+undeploy:
+	bash ${SCRIPT_DIR}/undeploy.sh
+.PHONY: check-hdfs
+check-hdfs:
+	bash ${SCRIPT_DIR}/check_hdfs.sh

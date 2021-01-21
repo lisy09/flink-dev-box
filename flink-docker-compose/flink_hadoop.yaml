@@ -1,11 +1,11 @@
-version: "2.2"
+version: "3"
 networks:
   default:
     external:
       name: app
 services:
   jobmanager:
-    image: flink:latest
+    image: ${BASE_IMAGE_FULL}
     ports:
       - "8081:8081"
     command: jobmanager
@@ -15,7 +15,7 @@ services:
         jobmanager.rpc.address: jobmanager
 
   taskmanager:
-    image: flink:latest
+    image: ${BASE_IMAGE_FULL}
     depends_on:
       - jobmanager
     command: taskmanager

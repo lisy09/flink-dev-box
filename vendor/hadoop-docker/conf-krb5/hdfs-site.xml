@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+    <property>
+        <name>dfs.https.address</name>
+        <value>0.0.0.0:9870</value>
+    </property>
+    <property>
+        <name>dfs.datanode.address</name>
+        <value>0.0.0.0:9865</value>
+    </property>
+    <property>
+        <name>dfs.webhdfs.enabled</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>dfs.permissions.enabled</name>
+        <value>false</value>
+    </property>
+    <property>
+        <name>dfs.namenode.datanode.registration.ip-hostname-check</name>
+        <value>false</value>
+    </property>
+    <property>
+        <name>dfs.namenode.rpc-bind-host</name>
+        <value>0.0.0.0</value>
+    </property>
+    <property>
+        <name>dfs.namenode.servicerpc-bind-host</name>
+        <value>0.0.0.0</value>
+    </property>
+    <property>
+        <name>dfs.namenode.http-bind-host</name>
+        <value>0.0.0.0</value>
+    </property>
+    <property>
+        <name>dfs.namenode.https-bind-host</name>
+        <value>0.0.0.0</value>
+    </property>
+    <property>
+        <name>dfs.client.use.datanode.hostname</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>dfs.datanode.use.datanode.hostname</name>
+        <value>true</value>
+    </property>
+
+    <!-- General HDFS security config -->
+    <property>
+        <name>dfs.block.access.token.enable</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>dfs.namenode.https.address</name>
+        <value>0.0.0.0:9866</value>
+    </property>
+    <property>
+        <name>dfs.datanode.https.address</name>
+        <value>0.0.0.0:9868</value>
+    </property>
+    <property>
+        <name>dfs.datanode.data.dir.perm</name>
+        <value>700</value> 
+    </property>
+    <property>
+        <name>dfs.data.transfer.protection</name>
+        <value>integrity</value>
+    </property>
+    <property>
+        <name>dfs.http.policy </name>
+        <value>HTTPS_ONLY</value>
+    </property>
+    <property>
+         <name>dfs.client.https.need-auth</name>
+         <value>false</value>
+     </property>
+    <!-- NameNode security config -->
+    <property>
+        <name>dfs.namenode.keytab.file</name>
+        <value>/var/secret/keytabs/hadoop.keytab</value>
+    </property>
+    <property>
+        <name>dfs.namenode.kerberos.principal</name>
+        <value>hdfs/namenode.app@EXAMPLE.COM</value>
+    </property>
+    <property>
+        <name>dfs.namenode.kerberos.internal.spnego.principal</name>
+        <value>HTTP/namenode.app@EXAMPLE.COM</value>
+    </property>
+    
+    <!-- DataNode security config -->
+    <property>
+        <name>dfs.datanode.keytab.file</name>
+        <value>/var/secret/keytabs/hadoop.keytab</value>
+    </property>
+    <property>
+        <name>dfs.datanode.kerberos.principal</name>
+        <value>hdfs/_HOST@EXAMPLE.COM</value>
+    </property>
+    <property>
+        <name>dfs.web.authentication.kerberos.keytab</name>
+        <value>/var/secret/keytabs/hadoop.keytab</value>
+    </property>
+    <property>
+        <name>dfs.web.authentication.kerberos.principal</name>
+        <value>HTTP/_HOST@EXAMPLE.COM</value>
+    </property>
+
+</configuration>
