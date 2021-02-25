@@ -1,0 +1,37 @@
+{
+    "name": "${localWorkspaceFolder}",
+	"dockerComposeFile":"docker-compose.yml",
+	"shutdownAction": "stopCompose",
+	"service":"scala-dev-base",
+	"runArgs": [
+		"--env-file", "../.env"
+	],
+
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "java.home": "/docker-java-home",
+        "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn",
+        "metals.sbtScript": "/usr/local/sdkman/candidates/sbt/current/bin/sbt",
+    },
+
+    "extensions": [
+        "editorconfig.editorconfig",
+        "sonarsource.sonarlint-vscode",
+        "visualstudioexptteam.vscodeintellicode",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-java-dependency",
+        "scala-lang.scala",
+        "scalameta.metals",
+        "redhat.fabric8-analytics",
+        "shengchen.vscode-checkstyle",
+        "dotjoshjohnson.xml"
+    ],
+    "workspaceMount": "",
+    "mounts": [
+    ],
+    "workspaceFolder": "/workspace/flink",
+    "initializeCommand": "if [ \"$(docker network ls -f name=app -q)\" = \"\" ]; then docker network create app; fi",
+    
+    // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
+}
