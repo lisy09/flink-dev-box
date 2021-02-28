@@ -1,0 +1,6 @@
+[submodule "vendor/flink-statefun"]
+	path = vendor/flink-statefun
+	url = git@github.com:apache/flink-statefun.git
+[submodule "vendor/flink"]
+	path = vendor/flink
+	url = git@github.com:apache/flink.git
