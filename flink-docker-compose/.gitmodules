@@ -1,4 +1,0 @@
-[submodule "vendor/flink"]
-	path = vendor/flink
-	url = git@github.com:apache/flink.git
-	branch = master
