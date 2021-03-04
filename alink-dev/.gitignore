@@ -1,0 +1,10 @@
+target
+.classpath
+.factorypath
+/.bloop/
+/.metals/
+/project/*
+!/project/assembly.sbt
+!/project/plugins.sbt
+!/project/metals.sbt
+!/project/build.properties

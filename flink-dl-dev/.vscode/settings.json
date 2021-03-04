@@ -1,0 +1,8 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.checkstyle.version": "8.40",
+    "java.checkstyle.configuration": "${workspaceFolder}/checkstyle.xml",
+    "files.watcherExclude": {
+        "**/target": true
+    }
+}

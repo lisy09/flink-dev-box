@@ -4,10 +4,10 @@ networks:
     external:
       name: app
 services: 
-  flink-src:
+  flink-ai-flow:
     image: ${BASE_IMAGE_FULL}
-    container_name: flink-src
+    container_name: flink-ai-flow
     volumes:
       - ..:/workspace:cached
-      - ../../vendor/flink:/workspace/flink:cached
+      - ../../vendor/flink-ai-extended/flink-ai-flow:/workspace/flink-ai-flow:cached
     command: /bin/sh -c "while sleep 1000; do :; done"

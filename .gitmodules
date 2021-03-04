@@ -4,3 +4,9 @@
 [submodule "vendor/flink"]
 	path = vendor/flink
 	url = git@github.com:apache/flink.git
+[submodule "vendor/alink"]
+	path = vendor/alink
+	url = git@github.com:alibaba/Alink.git
+[submodule "vendor/flink-ai-extended"]
+	path = vendor/flink-ai-extended
+	url = git@github.com:alibaba/flink-ai-extended.git
